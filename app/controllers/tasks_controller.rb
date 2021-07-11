@@ -51,4 +51,10 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:name, :description)
   end
+
+  def task_logger
+    @task_logger ||= Logger.new('log/task.log', 'daily')
+  end
+
+  task_logger.debug 'taskのログを出力'
 end
